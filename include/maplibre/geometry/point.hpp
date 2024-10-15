@@ -1,6 +1,6 @@
 #pragma once
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename T>
@@ -39,4 +39,4 @@ constexpr bool operator!=(point<T> const& lhs, point<T> const& rhs)
 }
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

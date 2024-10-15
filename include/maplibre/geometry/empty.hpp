@@ -1,6 +1,6 @@
 #pragma once
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 struct empty
@@ -15,4 +15,4 @@ constexpr bool operator<=(empty, empty) { return true; }
 constexpr bool operator>=(empty, empty) { return true; }
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

@@ -1,18 +1,18 @@
 # geometry.hpp
 
 [![badge](https://raw.githubusercontent.com/mapbox/cpp/master/assets/hpp-skel-badge_blue.svg)](https://github.com/mapbox/hpp-skel)
-[![Build Status](https://travis-ci.com/mapbox/geometry.hpp.svg?branch=master)](https://travis-ci.com/mapbox/geometry.hpp)
+[![Build Status](https://travis-ci.com/maplibre/geometry.hpp.svg?branch=master)](https://travis-ci.com/maplibre/geometry.hpp)
 
 Provides header-only, generic C++ interfaces for geometry types, geometry collections, and features.
 
- - `mapbox::geometry::point`
- - `mapbox::geometry::multi_point`
- - `mapbox::geometry::line_string`
- - `mapbox::geometry::multi_line_string`
- - `mapbox::geometry::polygon`
- - `mapbox::geometry::multi_polygon`
- - `mapbox::geometry::geometry_collection`
- - `mapbox::feature::feature` (experimental)
+ - `maplibre::geometry::point`
+ - `maplibre::geometry::multi_point`
+ - `maplibre::geometry::line_string`
+ - `maplibre::geometry::multi_line_string`
+ - `maplibre::geometry::polygon`
+ - `maplibre::geometry::multi_polygon`
+ - `maplibre::geometry::geometry_collection`
+ - `maplibre::feature::feature` (experimental)
 
 ### Design
 
@@ -27,7 +27,7 @@ They should also be a robust and high performance container for data processing 
  - Fast compile
  - c++11/c++14 compatibility
  - No external dependencies for usage of core types (point, line_string, etc)
- - Minimal dependencies for usage of enclosing `geometry` type (`mapbox::variant`)
+ - Minimal dependencies for usage of enclosing `geometry` type (`maplibre::variant`)
  - Easily [adaptable to `boost::geometry`](http://www.boost.org/doc/libs/1_56_0/libs/geometry/doc/html/geometry/examples/example__adapting_a_legacy_geometry_object_model.html)
 
 
@@ -36,10 +36,10 @@ They should also be a robust and high performance container for data processing 
 Using a single type directly (requires no external dependencies):
 
 ```cpp
-#include <mapbox/geometry/point.hpp>
+#include <maplibre/geometry/point.hpp>
 #include <iostream>
 
-using mapbox::geometry::point;
+using maplibre::geometry::point;
 
 int main() {
     point<double> pt(1.0,0.0);
@@ -50,13 +50,13 @@ int main() {
 Creating a geometry collection (depends on https://github.com/mapbox/variant):
 
 ```cpp
-#include <mapbox/geometry/geometry.hpp>
-#include <mapbox/variant.hpp>
+#include <maplibre/geometry/geometry.hpp>
+#include <maplibre/variant.hpp>
 #include <iostream>
 
-using mapbox::geometry::geometry_collection;
-using mapbox::geometry::geometry;
-using mapbox::geometry::point;
+using maplibre::geometry::geometry_collection;
+using maplibre::geometry::geometry;
+using maplibre::geometry::point;
 
 using point_type = point<double>;
 
@@ -81,6 +81,6 @@ int main() {
     gc.emplace_back(point_type(1.0,0.0));
     geometry<double> const& geom = gc.at(0);
     printer visitor;
-    mapbox::util::apply_visitor(visitor,geom);
+    maplibre::util::apply_visitor(visitor,geom);
 }
 ```

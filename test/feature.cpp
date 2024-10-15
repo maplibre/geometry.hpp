@@ -1,13 +1,13 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/feature.hpp>
+#include <maplibre/feature.hpp>
 
-using mapbox::geometry::point;
+using maplibre::geometry::point;
 
-using mapbox::feature::feature;
-using mapbox::feature::feature_collection;
-using mapbox::feature::null_value;
-using mapbox::feature::null_value_t;
-using mapbox::feature::value;
+using maplibre::feature::feature;
+using maplibre::feature::feature_collection;
+using maplibre::feature::null_value;
+using maplibre::feature::null_value_t;
+using maplibre::feature::value;
 
 namespace {
 

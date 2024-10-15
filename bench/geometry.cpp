@@ -1,5 +1,5 @@
 #include <benchmark/benchmark.h>
-#include <mapbox/geometry.hpp>
+#include <maplibre/geometry.hpp>
 #include <random>
 
 #pragma GCC diagnostic push
@@ -12,7 +12,7 @@ static void BM_polygon_allocation(benchmark::State& state) // NOLINT google-runt
     auto dice = std::bind(distribution, generator);
     while (state.KeepRunning())
     {
-        mapbox::geometry::linear_ring<std::int64_t> r;
+        maplibre::geometry::linear_ring<std::int64_t> r;
         r.reserve(s);
         r.emplace_back(dice(), dice());
     }

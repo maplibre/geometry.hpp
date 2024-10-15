@@ -1,6 +1,6 @@
 #pragma once
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename T>
@@ -116,4 +116,4 @@ point<T>& operator/=(point<T>& lhs, T const& rhs)
 }
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

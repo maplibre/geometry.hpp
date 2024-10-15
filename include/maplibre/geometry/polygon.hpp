@@ -1,12 +1,12 @@
 #pragma once
 
 // mapbox
-#include <mapbox/geometry/point.hpp>
+#include <maplibre/geometry/point.hpp>
 
 // stl
 #include <vector>
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename T, template <typename...> class Cont = std::vector>
@@ -42,4 +42,4 @@ struct polygon : Cont<linear_ring<T>>
 };
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

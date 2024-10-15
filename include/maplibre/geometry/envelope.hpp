@@ -1,11 +1,11 @@
 #pragma once
 
-#include <mapbox/geometry/box.hpp>
-#include <mapbox/geometry/for_each_point.hpp>
+#include <maplibre/geometry/box.hpp>
+#include <maplibre/geometry/for_each_point.hpp>
 
 #include <limits>
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename G, typename T = typename G::coordinate_type>
@@ -30,4 +30,4 @@ box<T> envelope(G const& geometry)
 }
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

@@ -1,8 +1,8 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry/line_string.hpp>
+#include <maplibre/geometry/line_string.hpp>
 
-using mapbox::geometry::line_string;
-using mapbox::geometry::point;
+using maplibre::geometry::line_string;
+using maplibre::geometry::point;
 
 TEST_CASE("test line string - double")
 {

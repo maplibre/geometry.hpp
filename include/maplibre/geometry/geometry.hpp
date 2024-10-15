@@ -1,19 +1,19 @@
 #pragma once
 
-#include <mapbox/geometry/empty.hpp>
-#include <mapbox/geometry/point.hpp>
-#include <mapbox/geometry/line_string.hpp>
-#include <mapbox/geometry/polygon.hpp>
-#include <mapbox/geometry/multi_point.hpp>
-#include <mapbox/geometry/multi_line_string.hpp>
-#include <mapbox/geometry/multi_polygon.hpp>
+#include <maplibre/geometry/empty.hpp>
+#include <maplibre/geometry/point.hpp>
+#include <maplibre/geometry/line_string.hpp>
+#include <maplibre/geometry/polygon.hpp>
+#include <maplibre/geometry/multi_point.hpp>
+#include <maplibre/geometry/multi_line_string.hpp>
+#include <maplibre/geometry/multi_polygon.hpp>
 
 #include <mapbox/variant.hpp>
 
 // stl
 #include <vector>
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename T, template <typename...> class Cont = std::vector>
@@ -53,4 +53,4 @@ struct geometry_collection : Cont<geometry<T>>
 };
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

@@ -1,7 +1,7 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry/empty.hpp>
+#include <maplibre/geometry/empty.hpp>
 
-using mapbox::geometry::empty;
+using maplibre::geometry::empty;
 
 TEST_CASE("test empty")
 {

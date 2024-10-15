@@ -1,12 +1,12 @@
 #pragma once
 
-#include <mapbox/geometry/geometry.hpp>
+#include <maplibre/geometry/geometry.hpp>
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename F>
-void for_each_point(mapbox::geometry::empty const&, F&&)
+void for_each_point(maplibre::geometry::empty const&, F&&)
 {
 }
 
@@ -48,4 +48,4 @@ auto for_each_point(Container&& container, F&& f)
 }
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

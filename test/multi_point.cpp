@@ -1,8 +1,8 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry/multi_point.hpp>
+#include <maplibre/geometry/multi_point.hpp>
 
-using mapbox::geometry::multi_point;
-using mapbox::geometry::point;
+using maplibre::geometry::multi_point;
+using maplibre::geometry::point;
 
 TEST_CASE("test multi point - double")
 {

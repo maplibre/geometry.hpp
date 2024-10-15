@@ -1,13 +1,13 @@
 #pragma once
 
-#include <mapbox/geometry/empty.hpp>
-#include <mapbox/feature.hpp>
+#include <maplibre/geometry/empty.hpp>
+#include <maplibre/feature.hpp>
 
 #include <algorithm>
 #include <iostream>
 #include <string>
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 inline std::ostream& operator<<(std::ostream& os, const empty&)
@@ -95,9 +95,9 @@ inline std::ostream& operator<<(std::ostream& os, const null_value_t&)
     return os << "null";
 }
 
-void to_stream(mapbox::feature::property_map const&, std::ostream& dest);
+void to_stream(maplibre::feature::property_map const&, std::ostream& dest);
 
-void to_stream(std::vector<mapbox::feature::value> const&, std::ostream& dest);
+void to_stream(std::vector<maplibre::feature::value> const&, std::ostream& dest);
 
 inline void quote_string(std::string const& in, std::ostream& dest)
 {
@@ -134,7 +134,7 @@ struct value_to_stream_visitor
         out << (val ? "true" : "false");
     }
 
-    void operator()(std::vector<mapbox::feature::value> const& vec)
+    void operator()(std::vector<maplibre::feature::value> const& vec)
     {
         out << '[';
         bool first = true;
@@ -153,12 +153,12 @@ struct value_to_stream_visitor
         out << ']';
     }
 
-    void operator()(std::shared_ptr<std::vector<mapbox::feature::value>> const& vec)
+    void operator()(std::shared_ptr<std::vector<maplibre::feature::value>> const& vec)
     {
         (*this)(*vec);
     }
 
-    void operator()(std::unordered_map<std::string, mapbox::feature::value> const& map)
+    void operator()(std::unordered_map<std::string, maplibre::feature::value> const& map)
     {
         out << '{';
         std::vector<std::string> keys;
@@ -186,27 +186,27 @@ struct value_to_stream_visitor
         out << '}';
     }
 
-    void operator()(std::shared_ptr<std::unordered_map<std::string, mapbox::feature::value>> const& map)
+    void operator()(std::shared_ptr<std::unordered_map<std::string, maplibre::feature::value>> const& map)
     {
         (*this)(*map);
     }
 };
 
-inline std::ostream& operator<<(std::ostream& os, std::unordered_map<std::string, mapbox::feature::value> const& map)
+inline std::ostream& operator<<(std::ostream& os, std::unordered_map<std::string, maplibre::feature::value> const& map)
 {
     value_to_stream_visitor vis{os};
     vis(map);
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, std::vector<mapbox::feature::value> const& vec)
+inline std::ostream& operator<<(std::ostream& os, std::vector<maplibre::feature::value> const& vec)
 {
     value_to_stream_visitor vis{os};
     vis(vec);
     return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, mapbox::feature::value const& val)
+inline std::ostream& operator<<(std::ostream& os, maplibre::feature::value const& val)
 {
     mapbox::util::apply_visitor(value_to_stream_visitor{os}, val);
     return os;
@@ -229,11 +229,11 @@ struct identifier_to_stream_visitor
     }
 };
 
-inline std::ostream& operator<<(std::ostream& os, mapbox::feature::identifier const& val)
+inline std::ostream& operator<<(std::ostream& os, maplibre::feature::identifier const& val)
 {
     mapbox::util::apply_visitor(identifier_to_stream_visitor{os}, val);
     return os;
 }
 
 } // namespace feature
-} // namespace mapbox
+} // namespace maplibre

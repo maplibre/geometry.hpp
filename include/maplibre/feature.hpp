@@ -1,6 +1,6 @@
 #pragma once
 
-#include <mapbox/geometry.hpp>
+#include <maplibre/geometry.hpp>
 
 #include <mapbox/variant.hpp>
 
@@ -10,7 +10,7 @@
 #include <memory>
 #include <unordered_map>
 
-namespace mapbox {
+namespace maplibre {
 namespace feature {
 
 // comparator functors
@@ -158,7 +158,7 @@ template <class T>
 struct feature
 {
     using coordinate_type = T;
-    using geometry_type = mapbox::geometry::geometry<T>; // Fully qualified to avoid GCC -fpermissive error.
+    using geometry_type = maplibre::geometry::geometry<T>; // Fully qualified to avoid GCC -fpermissive error.
 
     geometry_type geometry;
     property_map properties;
@@ -221,4 +221,4 @@ struct feature_collection : Cont<feature<T>>
 };
 
 } // namespace feature
-} // namespace mapbox
+} // namespace maplibre

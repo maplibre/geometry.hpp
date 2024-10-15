@@ -1,8 +1,8 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry.hpp>
+#include <maplibre/geometry.hpp>
 
 TEST_CASE("test geometry collection with out geometry compiles correctly")
 {
-    mapbox::geometry::geometry_collection<double> gc;
+    maplibre::geometry::geometry_collection<double> gc;
     CHECK(gc.empty());
 }

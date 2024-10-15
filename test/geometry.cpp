@@ -1,15 +1,15 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry.hpp>
+#include <maplibre/geometry.hpp>
 
-using mapbox::geometry::empty;
-using mapbox::geometry::geometry;
-using mapbox::geometry::geometry_collection;
-using mapbox::geometry::line_string;
-using mapbox::geometry::multi_line_string;
-using mapbox::geometry::multi_point;
-using mapbox::geometry::multi_polygon;
-using mapbox::geometry::point;
-using mapbox::geometry::polygon;
+using maplibre::geometry::empty;
+using maplibre::geometry::geometry;
+using maplibre::geometry::geometry_collection;
+using maplibre::geometry::line_string;
+using maplibre::geometry::multi_line_string;
+using maplibre::geometry::multi_point;
+using maplibre::geometry::multi_polygon;
+using maplibre::geometry::point;
+using maplibre::geometry::polygon;
 
 TEST_CASE("test empty in geometry")
 {

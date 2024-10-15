@@ -1,11 +1,11 @@
 #pragma once
 
 // mapbox
-#include <mapbox/geometry/point.hpp>
+#include <maplibre/geometry/point.hpp>
 // stl
 #include <vector>
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename T, template <typename...> class Cont = std::vector>
@@ -25,4 +25,4 @@ struct multi_point : Cont<point<T>>
 };
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

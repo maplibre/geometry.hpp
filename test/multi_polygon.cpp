@@ -1,8 +1,8 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry/multi_polygon.hpp>
+#include <maplibre/geometry/multi_polygon.hpp>
 
-using mapbox::geometry::multi_polygon;
-using mapbox::geometry::polygon;
+using maplibre::geometry::multi_polygon;
+using maplibre::geometry::polygon;
 
 TEST_CASE("test multi polygon - double")
 {

@@ -1,12 +1,12 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry/for_each_point.hpp>
-#include <mapbox/geometry/point_arithmetic.hpp>
+#include <maplibre/geometry/for_each_point.hpp>
+#include <maplibre/geometry/point_arithmetic.hpp>
 
-using mapbox::geometry::for_each_point;
-using mapbox::geometry::geometry;
-using mapbox::geometry::line_string;
-using mapbox::geometry::point;
-using mapbox::geometry::polygon;
+using maplibre::geometry::for_each_point;
+using maplibre::geometry::geometry;
+using maplibre::geometry::line_string;
+using maplibre::geometry::point;
+using maplibre::geometry::polygon;
 
 struct point_counter
 {

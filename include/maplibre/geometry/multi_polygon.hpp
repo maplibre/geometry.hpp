@@ -1,11 +1,11 @@
 #pragma once
 
 // mapbox
-#include <mapbox/geometry/polygon.hpp>
+#include <maplibre/geometry/polygon.hpp>
 // stl
 #include <vector>
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename T, template <typename...> class Cont = std::vector>
@@ -25,4 +25,4 @@ struct multi_polygon : Cont<polygon<T>>
 };
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

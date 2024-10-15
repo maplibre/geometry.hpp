@@ -1,8 +1,8 @@
 #pragma once
 
-#include <mapbox/geometry/point.hpp>
+#include <maplibre/geometry/point.hpp>
 
-namespace mapbox {
+namespace maplibre {
 namespace geometry {
 
 template <typename T>
@@ -33,4 +33,4 @@ constexpr bool operator!=(box<T> const& lhs, box<T> const& rhs)
 }
 
 } // namespace geometry
-} // namespace mapbox
+} // namespace maplibre

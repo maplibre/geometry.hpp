@@ -1,9 +1,9 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry/polygon.hpp>
+#include <maplibre/geometry/polygon.hpp>
 
-using mapbox::geometry::linear_ring;
-using mapbox::geometry::point;
-using mapbox::geometry::polygon;
+using maplibre::geometry::linear_ring;
+using maplibre::geometry::point;
+using maplibre::geometry::polygon;
 
 TEST_CASE("test polygon - double")
 {

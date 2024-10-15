@@ -1,8 +1,8 @@
 #include <catch2/catch_all.hpp>
-#include <mapbox/geometry/point.hpp>
-#include <mapbox/geometry/point_arithmetic.hpp>
+#include <maplibre/geometry/point.hpp>
+#include <maplibre/geometry/point_arithmetic.hpp>
 
-using mapbox::geometry::point;
+using maplibre::geometry::point;
 
 using namespace Catch;
 
