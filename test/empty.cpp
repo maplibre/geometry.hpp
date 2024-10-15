@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <mapbox/geometry/empty.hpp>
 
 using mapbox::geometry::empty;

@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <mapbox/geometry/envelope.hpp>
 
 using mapbox::geometry::box;

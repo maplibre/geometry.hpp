@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <mapbox/geometry_io.hpp>
 
 #include <iostream>

@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <mapbox/geometry/for_each_point.hpp>
 #include <mapbox/geometry/point_arithmetic.hpp>
 

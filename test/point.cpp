@@ -1,8 +1,10 @@
-#include <catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <mapbox/geometry/point.hpp>
 #include <mapbox/geometry/point_arithmetic.hpp>
 
 using mapbox::geometry::point;
+
+using namespace Catch;
 
 TEST_CASE("test point init - double")
 {
