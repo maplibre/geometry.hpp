@@ -1,7 +1,6 @@
-# geometry.hpp
+[![MapLibre Logo](https://maplibre.org/img/maplibre-logo-big.svg)](https://maplibre.org/)
 
-[![badge](https://raw.githubusercontent.com/mapbox/cpp/master/assets/hpp-skel-badge_blue.svg)](https://github.com/mapbox/hpp-skel)
-[![Build Status](https://travis-ci.com/maplibre/geometry.hpp.svg?branch=master)](https://travis-ci.com/maplibre/geometry.hpp)
+# geometry.hpp
 
 Provides header-only, generic C++ interfaces for geometry types, geometry collections, and features.
 
