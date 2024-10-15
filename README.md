@@ -80,6 +80,6 @@ int main() {
     gc.emplace_back(point_type(1.0,0.0));
     geometry<double> const& geom = gc.at(0);
     printer visitor;
-    maplibre::util::apply_visitor(visitor,geom);
+    mapbox::util::apply_visitor(visitor,geom);
 }
 ```
