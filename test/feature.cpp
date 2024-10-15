@@ -12,7 +12,8 @@ using maplibre::feature::value;
 namespace {
 
 template <typename T, typename U>
-void checkType(U arg) try
+void checkType(U arg)
+try
 {
     value v{arg};
     CHECK(v);
@@ -25,7 +26,8 @@ catch (...)
 }
 
 template <typename T, typename U>
-void checkPtrType(U arg) try
+void checkPtrType(U arg)
+try
 {
     value v{arg};
     CHECK(v);
@@ -38,7 +40,8 @@ catch (...)
 }
 
 template <typename T, typename U>
-void checkPtrType2(U arg) try
+void checkPtrType2(U arg)
+try
 {
     value v{arg};
     CHECK(v);
