@@ -1,10 +1,8 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.30)
 project(hpp_skel LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/mason.cmake)
 
 option(WERROR "Add -Werror flag to build (turns warnings into errors)" ON)
 
@@ -31,25 +29,29 @@ if (WERROR)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
 endif()
 
-# mason_use is a mason function within the mason.cmake file and provides ready-to-go vars, like "STATIC_LIBS" and "INCLUDE_DIRS"
-mason_use(catch VERSION 1.9.6 HEADER_ONLY)
-include_directories(SYSTEM ${MASON_PACKAGE_catch_INCLUDE_DIRS})
-
-mason_use(benchmark VERSION 1.2.0)
-include_directories(SYSTEM ${MASON_PACKAGE_benchmark_INCLUDE_DIRS})
-
-mason_use(variant VERSION 1.1.5 HEADER_ONLY)
-include_directories(SYSTEM ${MASON_PACKAGE_variant_INCLUDE_DIRS})
-
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
 file(GLOB TEST_SOURCES test/*.cpp)
 add_executable(unit-tests ${TEST_SOURCES})
+
+Include(FetchContent)
+
+#https://github.com/catchorg/Catch2/issues/2583
+add_compile_options(-Wno-error=conversion)
+add_compile_options(-Wno-error=sign-conversion)
+
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.7.1
+  SYSTEM  # https://gitlab.kitware.com/cmake/cmake/-/issues/25364
+)
+FetchContent_MakeAvailable(Catch2)
+
+target_link_libraries(unit-tests PRIVATE Catch2WithMain)
 
 # libbenchmark.a supports threads and therefore needs pthread support
 find_package(Threads REQUIRED)
 file(GLOB BENCH_SOURCES bench/*.cpp)
 add_executable(bench-tests ${BENCH_SOURCES})
 
-# link benchmark static library to the bench-tests binary so the bench tests know where to find the benchmark impl code
-target_link_libraries(bench-tests ${MASON_PACKAGE_benchmark_STATIC_LIBS} ${CMAKE_THREAD_LIBS_INIT})
