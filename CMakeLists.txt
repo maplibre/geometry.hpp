@@ -36,15 +36,16 @@ add_executable(unit-tests ${TEST_SOURCES})
 
 Include(FetchContent)
 
-#https://github.com/catchorg/Catch2/issues/2583
-add_compile_options(-Wno-error=conversion)
-add_compile_options(-Wno-error=sign-conversion)
+# SYSTEM property is not propagated so
+# set this globally ¯\_(ツ)_/¯
+# https://gitlab.kitware.com/cmake/cmake/-/issues/25364
+add_compile_options(-Wno-error)
 
 FetchContent_Declare(
   Catch2
   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
   GIT_TAG        v3.7.1
-  SYSTEM  # https://gitlab.kitware.com/cmake/cmake/-/issues/25364
+  SYSTEM
 )
 FetchContent_MakeAvailable(Catch2)
 
