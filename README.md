@@ -11,7 +11,9 @@ Provides header-only, generic C++ interfaces for geometry types, geometry collec
  - `maplibre::geometry::polygon`
  - `maplibre::geometry::multi_polygon`
  - `maplibre::geometry::geometry_collection`
- - `maplibre::feature::feature` (experimental)
+ - `maplibre::feature::feature`
+
+Dependency of [MapLibre Native](https://github.com/maplibre/maplibre-native).
 
 ### Design
 
@@ -24,15 +26,15 @@ They should also be a robust and high performance container for data processing 
 
  - Header-only
  - Fast compile
- - c++11/c++14 compatibility
+ - C++20
  - No external dependencies for usage of core types (point, line_string, etc)
- - Minimal dependencies for usage of enclosing `geometry` type (`maplibre::variant`)
+ - No dependencies for usage of enclosing `geometry` type
  - Easily [adaptable to `boost::geometry`](http://www.boost.org/doc/libs/1_56_0/libs/geometry/doc/html/geometry/examples/example__adapting_a_legacy_geometry_object_model.html)
 
 
 ### Usage
 
-Using a single type directly (requires no external dependencies):
+Using a single type directly:
 
 ```cpp
 #include <maplibre/geometry/point.hpp>
@@ -46,11 +48,11 @@ int main() {
 }
 ```
 
-Creating a geometry collection (depends on https://github.com/mapbox/variant):
+Creating a geometry collection:
 
 ```cpp
 #include <maplibre/geometry/geometry.hpp>
-#include <maplibre/variant.hpp>
+#include <variant>
 #include <iostream>
 
 using maplibre::geometry::geometry_collection;
@@ -80,6 +82,6 @@ int main() {
     gc.emplace_back(point_type(1.0,0.0));
     geometry<double> const& geom = gc.at(0);
     printer visitor;
-    mapbox::util::apply_visitor(visitor,geom);
+    std::visit(visitor, geom);
 }
 ```
