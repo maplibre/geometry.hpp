@@ -12,30 +12,6 @@
 namespace maplibre {
 namespace feature {
 
-// comparator functors
-struct equal_comp_shared_ptr
-{
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wfloat-equal"
-    template <typename T>
-    bool operator()(T const& lhs, T const& rhs) const
-    {
-        return lhs == rhs;
-    }
-#pragma GCC diagnostic pop
-
-    template <typename T>
-    bool operator()(std::shared_ptr<T> const& lhs, std::shared_ptr<T> const& rhs) const
-    {
-        if (lhs == rhs)
-        {
-            return true;
-        }
-        return *lhs == *rhs;
-    }
-};
-
 struct value;
 
 struct null_value_t
@@ -104,10 +80,24 @@ struct value : public value_base
     value(object_type object) : value_base(std::make_shared<object_type>(std::forward<object_type>(object))) {}
     value(object_ptr_type object) : value_base(object) {}
 
-    explicit operator bool() const { return !std::holds_alternative<null_value_t>(variant()); }
+    bool operator==(const value& rhs) const
+    {
+        if (index() != rhs.index()) return false;
 
-    // TODO: allow comparing values held by shared ptrs
-    friend bool operator==(const value&, const value&) = default;
+        if (std::holds_alternative<value::array_ptr_type>(*this))
+        {
+            return *std::get<value::array_ptr_type>(*this) == *std::get<value::array_ptr_type>(rhs);
+        }
+
+        if (std::holds_alternative<value::object_ptr_type>(*this))
+        {
+            return *std::get<value::object_ptr_type>(*this) == *std::get<value::object_ptr_type>(rhs);
+        }
+
+        return *static_cast<const value_base*>(this) == rhs;
+    }
+
+    explicit operator bool() const { return !std::holds_alternative<null_value_t>(variant()); }
 
     array_ptr_type getArray() noexcept
     {
@@ -208,8 +198,6 @@ struct value : public value_base
         return const_cast<value*>(this)->getString();
     }
 };
-
-#undef DECLARE_VALUE_TYPE_ACCESOR
 
 using property_map = value::object_type;
 

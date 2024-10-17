@@ -89,6 +89,25 @@ TEST_CASE("test value")
     CHECK_FALSE(intV.getString());
 }
 
+TEST_CASE("test value operator==")
+{
+    value true1 = true;
+    value true2 = true;
+    value false1 = false;
+    CHECK(true1 == true2);
+    CHECK(true1 != false1);
+
+    value::array_type vec = {1, 2, 3};
+    value arr1 = std::make_shared<value::array_type>(vec);
+    value arr2 = std::make_shared<value::array_type>(vec);
+    CHECK(arr1 == arr2);
+
+    value::object_type obj = {{"hello", 1}, {"world", true}};
+    value obj1 = std::make_shared<value::object_type>(obj);
+    value obj2 = std::make_shared<value::object_type>(obj);
+    CHECK(obj1 == obj2);
+}
+
 TEST_CASE("test feature")
 {
     feature<int64_t> pf{point<int64_t>()};
