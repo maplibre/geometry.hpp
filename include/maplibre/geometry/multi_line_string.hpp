@@ -1,8 +1,7 @@
 #pragma once
 
-// mapbox
 #include <maplibre/geometry/line_string.hpp>
-// stl
+
 #include <vector>
 
 namespace maplibre {

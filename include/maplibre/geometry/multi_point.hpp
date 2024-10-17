@@ -1,8 +1,7 @@
 #pragma once
 
-// mapbox
 #include <maplibre/geometry/point.hpp>
-// stl
+
 #include <vector>
 
 namespace maplibre {
