@@ -49,15 +49,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
-FetchContent_Declare(
-  MapboxVariant
-  GIT_REPOSITORY https://github.com/mapbox/variant.git
-  GIT_TAG origin/master
-)
-FetchContent_MakeAvailable(MapboxVariant)
-
-include_directories(SYSTEM ${mapboxvariant_SOURCE_DIR}/include)
-
 target_link_libraries(unit-tests PRIVATE Catch2WithMain)
 
 # libbenchmark.a supports threads and therefore needs pthread support
