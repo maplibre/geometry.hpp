@@ -76,7 +76,7 @@ std::ostream& operator<<(std::ostream& os, const multi_polygon<T>& geom)
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const geometry<T>& geom)
 {
-    geometry<T>::visit(geom, [&](const auto& g) { os << g; });
+    std::visit([&](const auto& g) { os << g; }, geom);
     return os;
 }
 

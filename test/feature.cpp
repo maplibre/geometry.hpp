@@ -92,7 +92,7 @@ TEST_CASE("test value")
 TEST_CASE("test feature")
 {
     feature<int64_t> pf{point<int64_t>()};
-    CHECK(pf.geometry.is<point<int64_t>>());
+    CHECK(std::holds_alternative<point<int64_t>>(pf.geometry));
     CHECK(pf.properties.empty());
 
     auto& p = pf.properties;
