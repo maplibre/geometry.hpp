@@ -76,7 +76,7 @@ std::ostream& operator<<(std::ostream& os, const multi_polygon<T>& geom)
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const geometry<T>& geom)
 {
-    geometry<T>::visit(geom, [&](const auto& g) { os << g; });
+    std::visit([&](const auto& g) { os << g; }, geom);
     return os;
 }
 
@@ -148,7 +148,7 @@ struct value_to_stream_visitor
             {
                 out << ',';
             }
-            mapbox::util::apply_visitor(*this, item);
+            std::visit(*this, item);
         }
         out << ']';
     }
@@ -181,7 +181,7 @@ struct value_to_stream_visitor
             auto const val = map.find(k);
             quote_string(k, out);
             out << ':';
-            mapbox::util::apply_visitor(*this, val->second);
+            std::visit(*this, val->second);
         }
         out << '}';
     }
@@ -208,7 +208,7 @@ inline std::ostream& operator<<(std::ostream& os, std::vector<maplibre::feature:
 
 inline std::ostream& operator<<(std::ostream& os, maplibre::feature::value const& val)
 {
-    mapbox::util::apply_visitor(value_to_stream_visitor{os}, val);
+    std::visit(value_to_stream_visitor{os}, val);
     return os;
 }
 
@@ -231,7 +231,7 @@ struct identifier_to_stream_visitor
 
 inline std::ostream& operator<<(std::ostream& os, maplibre::feature::identifier const& val)
 {
-    mapbox::util::apply_visitor(identifier_to_stream_visitor{os}, val);
+    std::visit(identifier_to_stream_visitor{os}, val);
     return os;
 }
 

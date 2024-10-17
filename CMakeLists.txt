@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.30)
 project(hpp_skel LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -48,15 +48,6 @@ FetchContent_Declare(
   SYSTEM
 )
 FetchContent_MakeAvailable(Catch2)
-
-FetchContent_Declare(
-  MapboxVariant
-  GIT_REPOSITORY https://github.com/mapbox/variant.git
-  GIT_TAG origin/master
-)
-FetchContent_MakeAvailable(MapboxVariant)
-
-include_directories(SYSTEM ${mapboxvariant_SOURCE_DIR}/include)
 
 target_link_libraries(unit-tests PRIVATE Catch2WithMain)
 

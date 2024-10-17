@@ -8,9 +8,8 @@
 #include <maplibre/geometry/multi_line_string.hpp>
 #include <maplibre/geometry/multi_polygon.hpp>
 
-#include <mapbox/variant.hpp>
-
 // stl
+#include <variant>
 #include <vector>
 
 namespace maplibre {
@@ -20,14 +19,14 @@ template <typename T, template <typename...> class Cont = std::vector>
 struct geometry_collection;
 
 template <typename T, template <typename...> class Cont = std::vector>
-using geometry_base = mapbox::util::variant<empty,
-                                            point<T>,
-                                            line_string<T, Cont>,
-                                            polygon<T, Cont>,
-                                            multi_point<T, Cont>,
-                                            multi_line_string<T, Cont>,
-                                            multi_polygon<T, Cont>,
-                                            geometry_collection<T, Cont>>;
+using geometry_base = std::variant<empty,
+                                   point<T>,
+                                   line_string<T, Cont>,
+                                   polygon<T, Cont>,
+                                   multi_point<T, Cont>,
+                                   multi_line_string<T, Cont>,
+                                   multi_polygon<T, Cont>,
+                                   geometry_collection<T, Cont>>;
 
 template <typename T, template <typename...> class Cont = std::vector>
 struct geometry : geometry_base<T, Cont>

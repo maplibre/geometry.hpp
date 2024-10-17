@@ -17,8 +17,8 @@ try
 {
     value v{arg};
     CHECK(v);
-    CHECK(v.template is<T>());
-    CHECK(v.template get<T>() == arg);
+    CHECK(std::holds_alternative<T>(v));
+    CHECK(std::get<T>(v) == arg);
 }
 catch (...)
 {
@@ -31,8 +31,8 @@ try
 {
     value v{arg};
     CHECK(v);
-    CHECK(v.template is<T>());
-    CHECK(*(v.template get<T>()) == *arg);
+    CHECK(std::holds_alternative<T>(v));
+    CHECK(*(std::get<T>(v)) == *arg);
 }
 catch (...)
 {
@@ -45,8 +45,8 @@ try
 {
     value v{arg};
     CHECK(v);
-    CHECK(v.template is<T>());
-    CHECK(*(v.template get<T>()) == arg);
+    CHECK(std::holds_alternative<T>(v));
+    CHECK(*(std::get<T>(v)) == arg);
 }
 catch (...)
 {
@@ -73,13 +73,13 @@ TEST_CASE("test value")
     checkPtrType2<value::object_ptr_type>(map);
 
     value intV{32};
-    CHECK_THROWS(intV.get<uint64_t>());
+    CHECK_THROWS(std::get<uint64_t>(intV));
 
     auto* result = intV.getInt();
     CHECK(result);
     CHECK(*result == 32);
     *result = 100;
-    CHECK(intV.get<int64_t>() == 100);
+    CHECK(std::get<int64_t>(intV) == 100);
 
     CHECK_FALSE(intV.getUint());
     CHECK_FALSE(intV.getBool());
@@ -89,10 +89,29 @@ TEST_CASE("test value")
     CHECK_FALSE(intV.getString());
 }
 
+TEST_CASE("test value operator==")
+{
+    value true1 = true;
+    value true2 = true;
+    value false1 = false;
+    CHECK(true1 == true2);
+    CHECK(true1 != false1);
+
+    value::array_type vec = {1, 2, 3};
+    value arr1 = std::make_shared<value::array_type>(vec);
+    value arr2 = std::make_shared<value::array_type>(vec);
+    CHECK(arr1 == arr2);
+
+    value::object_type obj = {{"hello", 1}, {"world", true}};
+    value obj1 = std::make_shared<value::object_type>(obj);
+    value obj2 = std::make_shared<value::object_type>(obj);
+    CHECK(obj1 == obj2);
+}
+
 TEST_CASE("test feature")
 {
     feature<int64_t> pf{point<int64_t>()};
-    CHECK(pf.geometry.is<point<int64_t>>());
+    CHECK(std::holds_alternative<point<int64_t>>(pf.geometry));
     CHECK(pf.properties.empty());
 
     auto& p = pf.properties;
@@ -104,21 +123,22 @@ TEST_CASE("test feature")
     p["int"] = int64_t(-10);
     p["null"] = null_value;
 
-    REQUIRE(p["bool"].is<bool>());
+    REQUIRE(std::holds_alternative<bool>(p["bool"]));
     CHECK(p["bool"] == true);
-    REQUIRE(p["string"].is<std::string>());
+    REQUIRE(std::holds_alternative<std::string>(p["string"]));
     CHECK(p["string"] == std::string("foo"));
-    REQUIRE(p["double"].is<double>());
+    REQUIRE(std::holds_alternative<double>(p["double"]));
     CHECK(p["double"] == 2.5);
-    REQUIRE(p["uint"].is<uint64_t>());
+    REQUIRE(std::holds_alternative<uint64_t>(p["uint"]));
     CHECK(p["uint"] == uint64_t(10));
-    REQUIRE(p["int"].is<int64_t>());
+    REQUIRE(std::holds_alternative<int64_t>(p["int"]));
     CHECK(p["int"] == int64_t(-10));
-    REQUIRE(p["null"].is<null_value_t>());
+    REQUIRE(std::holds_alternative<null_value_t>(p["null"]));
     CHECK(p["null"] == null_value);
 
     p["null"] = null_value_t{};
-    REQUIRE(p["null"].is<null_value_t>());
+    REQUIRE(std::holds_alternative<null_value_t>(p["null"]));
+
     CHECK(p["null"] == null_value);
 
     CHECK(p == p);
