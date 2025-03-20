@@ -47,7 +47,7 @@ TEST_CASE("test for each point")
     CHECK(g == geometry<int64_t>(polygon<int64_t>({{{0, -1}, {-2, -3}}})));
 
     // Custom geometry type
-    using my_geometry = std::variant<point<int64_t>>;
+    using my_geometry = mapbox::util::variant<point<int64_t>>;
     CHECK(count_points(my_geometry(point<int64_t>())) == 1);
 
     // Custom point type
@@ -57,5 +57,5 @@ TEST_CASE("test for each point")
         int16_t y;
     };
     CHECK(count_points(std::vector<my_point>({my_point{0, 1}})) == 1);
-    CHECK(count_points(std::variant<my_point>(my_point{0, 1})) == 1);
+    CHECK(count_points(mapbox::util::variant<my_point>(my_point{0, 1})) == 1);
 }
