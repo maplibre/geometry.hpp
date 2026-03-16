@@ -1,7 +1,6 @@
 #pragma once
 
 #include <maplibre/geometry/line_string.hpp>
-
 #include <vector>
 
 namespace maplibre {

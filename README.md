@@ -52,7 +52,7 @@ Creating a geometry collection:
 
 ```cpp
 #include <maplibre/geometry/geometry.hpp>
-#include <variant>
+#include <mapbox/variant.hpp>
 #include <iostream>
 
 using maplibre::geometry::geometry_collection;
@@ -82,6 +82,6 @@ int main() {
     gc.emplace_back(point_type(1.0,0.0));
     geometry<double> const& geom = gc.at(0);
     printer visitor;
-    std::visit(visitor, geom);
+    mapbox::util::apply_visitor(visitor,geom);
 }
 ```
